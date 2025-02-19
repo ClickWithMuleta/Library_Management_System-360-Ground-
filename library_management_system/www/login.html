@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Library Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white p-8 rounded-2xl shadow-lg w-96 text-center">
+        <h2 class="text-2xl font-semibold text-gray-700">📚 Library Login</h2>
+        
+        <form id="login-form" class="mt-4">
+            <div class="mb-4">
+                <input type="text" id="email" placeholder="Email/Username" 
+                    class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+            </div>
+            
+            <div class="mb-4">
+                <input type="password" id="password" placeholder="Password" 
+                    class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+            </div>
+            
+            <button type="submit" id="login-btn"
+                class="w-full bg-blue-500 text-white py-2 rounded-lg font-semibold hover:bg-blue-600 transition">
+                Login
+            </button>
+
+            <div id="error-msg" class="text-red-500 text-sm mt-2 hidden"></div>
+        </form>
+        
+        <div class="mt-4 text-gray-500 text-sm">
+            Don't have an account? <a href="#" class="text-blue-500 hover:underline">Sign Up</a>
+        </div>
+    </div>
+   <!-- Link to External JavaScript -->
+   <script src="/assets/library_management_system/js/secure_login.js"></script>
+
+
+</body>
+</html>

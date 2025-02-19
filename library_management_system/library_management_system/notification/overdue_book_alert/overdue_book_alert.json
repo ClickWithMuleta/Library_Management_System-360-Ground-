@@ -1,0 +1,30 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "doc.status == \"Loaned\" and doc.return_date < frappe.utils.today()",
+ "creation": "2025-02-16 22:16:02.548896",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Loan",
+ "enabled": 1,
+ "event": "Custom",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "Dear {{ member }},\r\nYour borrowed book \"{{ book }}\" is overdue since {{ return_date }}.\r\nPlease return it as soon as possible to avoid penalties.\r\nRegards, Library Team.\r\n",
+ "message_type": "Markdown",
+ "minutes_offset": 0,
+ "modified": "2025-02-16 22:16:02.548896",
+ "modified_by": "Administrator",
+ "module": "Library Management System",
+ "name": "Overdue Book Alert",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_role": "Library Member"
+  }
+ ],
+ "send_system_notification": 1,
+ "send_to_all_assignees": 0,
+ "subject": "{{ doc.name }}"
+}

@@ -1,0 +1,67 @@
+{% extends "templates/base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Member</title>
+</head>
+<body>
+    
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4"> Create a New Member</h2>
+
+    <!-- Success/Error Message Display -->
+    <div id="message-container" style="text-align: center; width: 50%; margin-left: 260px;"></div>
+
+    <form action="/api/method/library_management_system.library_management_system.api.create_member" id="create-member-form" method="POST">
+        <div class="row">
+            <!-- Left Column -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="title" class="form-label">First_Name</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="author" class="form-label">Last_Name</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name" required>
+                </div>
+
+    
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="publish_date" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="publish_date" class="form-label">Phone</label>
+                    <input type="text" class="form-control" id="phone" name="phone" required>
+                </div>
+ 
+            </div>
+        </div>
+
+        <!-- Submit and Cancel Buttons -->
+        <div class="text-center mt-3">
+            <input type="hidden" name="csrf_token" value="{{ frappe.csrf_token }}">
+            <button type="submit" class="btn btn-primary px-4">Create Member</button>
+            <a href="/members" class="btn btn-secondary px-4">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<!-- Link to External JavaScript -->
+<script src="/assets/library_management_system/js/addMember_message.js"></script>
+
+</body>
+</html>
+
+{% endblock %}

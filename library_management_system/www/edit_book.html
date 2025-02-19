@@ -1,0 +1,72 @@
+{% extends "templates/base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Book</title>
+</head>
+<body>
+    
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">✏️ Edit Book</h2>
+
+    <!-- Success/Error Message Display -->
+    <div id="message-container" style="text-align: center; width: 50%; margin-left: 260px;"></div>
+
+    <form action="/api/method/library_management_system.library_management_system.api.update_book" id="editBookForm" method="POST">
+        <input type="hidden" name="name" id="bookName" value="{{ book.name }}">
+
+        <div class="row">
+            <!-- Left Column -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">Title</label>
+                    <input type="text" class="form-control" name="title" id="title" value="{{ book.title }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Author</label>
+                    <input type="text" class="form-control" name="author" id="author" value="{{ book.author }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">ISBN</label>
+                    <input type="text" class="form-control" name="isbn" id="isbn" value="{{ book.isbn }}" required>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">Publish Date</label>
+                    <input type="date" class="form-control" name="publish_date" id="publish_date" value="{{ book.publish_date }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Status</label>
+                    <select class="form-control" name="status" id="status">
+                        <option value="Available" {% if book.status == "Available" %}selected{% endif %}>Available</option>
+                        <option value="Loaned" {% if book.status == "Loaned" %}selected{% endif %}>Loaned</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit and Cancel Buttons -->
+        <div class="text-center mt-3">
+            <button type="submit" class="btn btn-primary px-4">Update Book</button>
+            <a href="/books" class="btn btn-secondary px-4">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<!-- Link to External JavaScript -->
+<script src="/assets/library_management_system/js/editBook_message.js"></script>
+
+</body>
+</html>
+{% endblock %}

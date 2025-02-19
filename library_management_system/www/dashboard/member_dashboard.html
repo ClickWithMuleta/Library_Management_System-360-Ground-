@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 flex">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-cyan-900 text-white min-h-screen p-5">
+        <h2 class="text-xl font-bold mb-6">🧑‍🤝‍🧑 Library Member</h2>
+        <nav>
+            <ul>
+                <li class="mb-4">
+                    <a href="/books" class="block p-2 hover:bg-blue-700 rounded">📖 View Available Books</a>
+                </li>
+            
+                <li class="mb-4">
+                    <a href="#" class="block p-2 hover:bg-blue-700 rounded">👥 Manage Your Account</a>
+                </li>
+   
+                <li class="mb-4">
+                    <button onclick="toggleDarkMode()" class="w-full p-2 bg-gray-600 hover:bg-gray-700 rounded">
+                        🌙 Toggle Dark Mode
+                    </button>
+                </li>
+                <li>
+                    <button onclick="logout()" class="w-full p-2 bg-red-500 hover:bg-red-600 rounded">
+                        🚪 Logout
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-8">
+        <p class="text-gray-600 mb-6"> <strong>View available books, and loans book here.</strong></p>
+
+        <!-- Dashboard Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                <h2 class="text-lg font-semibold text-gray-700">📖 Total Books</h2>
+                <p id="total-books" class="text-2xl font-bold text-blue-600 mt-2 animate-pulse">Loading...</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                <h2 class="text-lg font-semibold text-gray-700">👥 Total Users</h2>
+                <p id="total-users" class="text-2xl font-bold text-green-600 mt-2 animate-pulse">Loading...</p>
+            </div>
+    
+        </div>
+
+    </main>
+
+    <script>
+        async function fetchDashboardData() {
+            try {
+                let booksResponse = await fetch('/api/resource/Book?fields=["name"]');
+                let usersResponse = await fetch('/api/resource/User?fields=["name"]');
+                let loansResponse = await fetch('/api/resource/Loan?fields=["name", "creation", "book", "user"]');
+                let overdueResponse = await fetch('/api/resource/Loan?filters=[["due_date","<",new Date().toISOString().split("T")[0]],["status","=","Loaned"]]');
+
+                let books = await booksResponse.json();
+                let users = await usersResponse.json();
+                let loans = await loansResponse.json();
+                let overdueLoans = await overdueResponse.json();
+
+                document.getElementById("total-books").textContent = books.data.length;
+                document.getElementById("total-users").textContent = users.data.length;
+                document.getElementById("total-loans").textContent = loans.data.length;
+                document.getElementById("overdue-loans").textContent = overdueLoans.data.length;
+
+                let recentLoans = loans.data.slice(0, 5).map(loan => 
+                    `<tr class="border-t"><td class="p-2">${loan.book}</td><td class="p-2">${loan.user}</td><td class="p-2">${loan.creation.split(" ")[0]}</td></tr>`
+                ).join("");
+                document.getElementById("recent-loans").innerHTML = recentLoans || `<tr><td colspan="3" class="text-center p-4 text-gray-500">No recent activity</td></tr>`;
+
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }
+
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("bg-gray-900");
+            document.body.classList.toggle("text-white");
+        }
+
+        function logout() {
+            if (confirm("Are you sure you want to logout?")) {
+                window.location.href = "/logout";
+            }
+        }
+
+        fetchDashboardData();
+        renderLoanChart();
+    </script>
+
+</body>
+</html>

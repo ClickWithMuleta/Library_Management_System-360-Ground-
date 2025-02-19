@@ -1,0 +1,69 @@
+{% extends "templates/base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    
+    <div class="container mt-4">
+        <h1 class="text-center mb-4"> 🧑‍🤝‍🧑 Library Membrs</h1>
+<!-- Create member Button -->
+<div class="d-flex justify-content-end mb-4" sty>
+    <a href="/create_member" class="btn btn-success" style="margin-right: 50px;">Create New Member</a>
+</div>
+
+
+        {% if members %}
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Membership_ID</th>
+                            <th>First_name</th>
+                            <th>Last_Name</th>
+                            <th>Full_Name </th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>View</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for member in members %}
+                            <tr>
+                                <td>{{ member.membership_id }}</td>
+                                <td>{{ member.first_name }}</td>
+                                <td>{{ member.last_name }}</td>
+                                <td>{{ member.full_name }}</td>
+                                <td>{{ member.email }}</td>  
+                                <td>{{ member.phone }}</td>  
+
+                                   <td><a href="/member_details?name={{ member.name }}" class="btn btn-primary btn-sm">View</a></td> 
+                                    <td><a href="/edit_member?name={{ member.name }}" class="btn btn-warning btn-sm">Edit</a></td>
+                                    <td><button class="btn btn-danger btn-sm delete-btn" data-member_id="{{ member.name }}">Delete</button></td>
+                                    
+                                </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="text-center text-muted">No members found.</p>
+        {% endif %}
+    </div>
+      <!-- Link to External JavaScript -->
+  <script src="/assets/library_management_system/js/deleteMember.js"></script>
+
+</body>
+</html>
+    
+{% endblock %}

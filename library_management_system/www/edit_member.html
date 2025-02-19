@@ -1,0 +1,65 @@
+{% extends "templates/base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Member</title>
+</head>
+<body>
+    
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">✏️ Edit Member</h2>
+
+    <!-- Success/Error Message Display -->
+    <div id="message-container" style="text-align: center; width: 50%; margin-left: 260px;"></div>
+
+    <form action="/api/method/library_management_system.library_management_system.api.update_member" id="editMemberForm" method="POST">
+        <input type="hidden" name="name" id="memberName" value="{{ member.name }}">
+
+        <div class="row">
+            <!-- Left Column -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">First_Name</label>
+                    <input type="text" class="form-control" name="first_name" id="frist_name" value="{{ member.first_name }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Last_Name</label>
+                    <input type="text" class="form-control" name="last_name" id="last_name" value="{{ member.last_name }}" required>
+                </div>
+
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" id="email" value="{{ member.email }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="pone" value="{{ member.phone }}" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit and Cancel Buttons -->
+        <div class="text-center mt-3">
+            <button type="submit" class="btn btn-primary px-4">Update Member</button>
+            <a href="/members" class="btn btn-secondary px-4">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<!-- Link to External JavaScript -->
+<script src="/assets/library_management_system/js/editMember_message.js"></script>
+
+</body>
+</html>
+{% endblock %}

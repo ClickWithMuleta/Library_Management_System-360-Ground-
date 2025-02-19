@@ -1,0 +1,25 @@
+{% block page_content %}
+<div class="container d-flex justify-content-center mt-5">
+    <div class="card shadow-lg" style="max-width: 700px; width: 100%;">
+        <div class="row g-0">
+            <!-- Book Image -->
+            <div class="col-md-4 d-flex align-items-center justify-content-center p-3">
+                <img src="{{ doc.image }}" alt="{{ doc.name }}" class="img-fluid rounded shadow-sm" style="max-height: 200px; margin-left: 150px;">
+            </div>
+
+            <!-- Book Details -->
+            <div class="col-md-8">
+                <div class="card-body text-center">
+                    <h2 class="card-title">{{ doc.name }}</h2>
+                    <p class="card-text"><strong>By:</strong> {{ doc.author }}</p>
+
+
+                        <a href="{{ doc.route }}" class="btn btn-success mt-3 px-4">
+                            View Details
+                        </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

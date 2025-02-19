@@ -1,0 +1,81 @@
+{% extends "templates/base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  <!-- Link to External JavaScript -->
+  <script src="/assets/library_management_system/js/deleteBook.js"></script>
+
+</head>
+<body>
+    
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">📚 Library Books</h1>
+<!-- Create Book Button -->
+<div class="d-flex justify-content-end mb-4" sty>
+    <a href="/create_book" class="btn btn-success" style="margin-right: 50px;">Create New Book</a>
+</div>
+
+
+        {% if books %}
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Title</th>
+                            <th>Image</th>
+                            <th>Author</th>
+                            <th>Publish Date</th>
+                            <th>ISBN</th>
+                            <th>Status</th>
+                            <th>View</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for book in books %}
+                            <tr>
+                                <td>{{ book.title }}</td>
+                                <td class="text-center">
+                                    {% if book.image %}
+                                        <img src="{{ book.image }}" alt="{{ book.title }}" width="50px" class="rounded">
+                                    {% else %}
+                                        <span class="text-muted">No Image</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ book.author }}</td>
+                                <td>{{ book.publish_date }}</td>
+                                <td>{{ book.isbn }}</td>
+                                <td>
+                                    {% if book.status == "Available" %}
+                                        <span class="badge bg-success">Available</span>
+                                    {% else %}
+                                        <span class="badge bg-danger">Loaned</span>
+                                    {% endif %}
+                                </td>
+                                
+                                   <td><a href="/book_details?name={{ book.name }}" class="btn btn-primary btn-sm">View</a></td> 
+                                    <td><a href="/edit_book?name={{ book.name }}" class="btn btn-warning btn-sm">Edit</a></td>
+                                    <td><button class="btn btn-danger btn-sm delete-btn" data-name="{{ book.name }}">Delete</button></td>
+                                    
+                                </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="text-center text-muted">No books found.</p>
+        {% endif %}
+    </div>
+    
+</body>
+</html>
+    
+{% endblock %}

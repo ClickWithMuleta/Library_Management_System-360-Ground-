@@ -1,0 +1,77 @@
+{% extends "templates/base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+</head>
+<body>
+    
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">📚 Create a New Book</h2>
+
+    <!-- Success/Error Message Display -->
+    <div id="message-container" style="text-align: center; width: 50%; margin-left: 260px;"></div>
+
+    <form action="/api/method/library_management_system.library_management_system.api.create_book" id="create-book-form" method="POST">
+        <div class="row">
+            <!-- Left Column -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="author" class="form-label">Author</label>
+                    <input type="text" class="form-control" id="author" name="author" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="isbn" class="form-label">ISBN</label>
+                    <input type="text" class="form-control" id="isbn" name="isbn" required>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="publish_date" class="form-label">Publish Date</label>
+                    <input type="date" class="form-control" id="publish_date" name="publish_date" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="status" class="form-label">Status</label>
+                    <select class="form-control" id="status" name="status">
+                        <option value="Available">Available</option>
+                        <option value="Loaned">Loaned</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <input type="file" class="form-control" id="image" name="image">
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit and Cancel Buttons -->
+        <div class="text-center mt-3">
+            <input type="hidden" name="csrf_token" value="{{ frappe.csrf_token }}">
+            <button type="submit" class="btn btn-primary px-4">Create Book</button>
+            <a href="/books" class="btn btn-secondary px-4">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<!-- Link to External JavaScript -->
+<script src="/assets/library_management_system/js/addBook_message.js"></script>
+
+</body>
+</html>
+
+{% endblock %}
