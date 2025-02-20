@@ -62,7 +62,7 @@ Ensure you have the following installed:
 
        ```
  ```
-   ```sh
+ 
    cd ..
 ```
 
