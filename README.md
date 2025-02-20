@@ -44,17 +44,21 @@ Ensure you have the following installed:
 2. **Initialize a Bench and Create a Site**
    ```sh
    bench init lms-bench
+   ```
+   ```sh
    cd lms-bench
+   ```
+   ```sh
    bench new-site lms.localhost
    ```
 
-3. **Get the Custom Library Management App**
+4. **Get the Custom Library Management App**
    ```sh
    cd apps
+   ```
    ```sh
   git clone https://github.com/ClickWithMuleta/Library_Management_System_Challenge-360-Ground-.git
-
-```
+   ```
   ```sh
    cd ..
 ```
