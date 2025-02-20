@@ -1,5 +1,6 @@
 # requirements.txt
-frappe>=14.0
+
+frappe>=v14.0.0
 gunicorn
 annotated-types==0.7.0
 asttokens==3.0.0
