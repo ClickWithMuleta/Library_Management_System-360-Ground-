@@ -15,8 +15,7 @@ This is a simple Library Management System developed using the Frappe framework.
 - Check book availability before loaning.
 
 ### Reports
-- Generate reports for all currently loaned books.
-
+- Generate reports for all currently loaned books and overdue books.
 ### Custom API Development
 - REST API for interacting with the system externally.
 - Supports adding, retrieving, updating, and deleting books and members.
@@ -53,8 +52,10 @@ Ensure you have the following installed:
    ```sh
    cd apps
   git clone https://github.com/ClickWithMuleta/Library_Management_System_Challenge-360-Ground-.git
+  
    cd ..
    bench get-app library_management_system
+   
    bench --site lms.localhost install-app library_management_system
    ```
 
