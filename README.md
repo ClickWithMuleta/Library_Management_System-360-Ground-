@@ -51,11 +51,14 @@ Ensure you have the following installed:
 3. **Get the Custom Library Management App**
    ```sh
    cd apps
+   ```sh
   git clone https://github.com/ClickWithMuleta/Library_Management_System_Challenge-360-Ground-.git
-  
+
+  ```sh
    cd ..
+```sh
    bench get-app library_management_system
-   
+   ```sh
    bench --site lms.localhost install-app library_management_system
    ```
 
