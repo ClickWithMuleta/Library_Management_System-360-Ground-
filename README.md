@@ -81,4 +81,6 @@ Ensure you have the following installed:
 
 5. **Access the Application**
    Open a browser and go to: `http://lms.localhost:8000`
+Login Page
+![Image](https://github.com/user-attachments/assets/51320a8c-126e-4f79-b191-81f6583b5509)
    
