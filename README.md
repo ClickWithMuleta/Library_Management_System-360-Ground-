@@ -65,9 +65,4 @@ Ensure you have the following installed:
 
 5. **Access the Application**
    Open a browser and go to: `http://lms.localhost:8000`
-
-### Deployment Options
-#### Option A: Deploy on a Free Hosting Service
-- You can deploy your Frappe application on a cloud service like Heroku or use Frappe Cloud.
-- Follow Frappe's official deployment guide for production setup 
-
+   
