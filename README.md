@@ -1,4 +1,4 @@
-# Library Management System
+ # Library Management System
 
 ## Overview
 This is a simple Library Management System developed using the Frappe framework. The system allows libraries to manage books, members, and loans efficiently with an intuitive user interface and custom REST API.
@@ -46,7 +46,7 @@ Ensure you have the following installed:
    bench init lms-bench
    ```
    ```sh
-   cd lms-bench
+     cd lms-bench
    ```
    ```sh
    bench new-site lms.localhost
