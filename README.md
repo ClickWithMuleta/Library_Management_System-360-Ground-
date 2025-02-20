@@ -56,9 +56,9 @@ Ensure you have the following installed:
    ```sh
    cd apps
    ```
-   ```sh
+   
   git clone https://github.com/ClickWithMuleta/Library_Management_System_Challenge-360-Ground-.git
-   ```
+   
  
    cd ..
 ```
