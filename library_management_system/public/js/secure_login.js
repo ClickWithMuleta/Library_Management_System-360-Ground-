@@ -68,11 +68,11 @@ if (result.message === "Logged In") {
 
     // Redirect based on role
     if (roles.includes("Administrator")) {
-        window.location.href = "/dashboard/admin_dashboard.html";
+        window.location.href = "/dashboard/admin_dashboard";
     } else if (roles.includes("Librarian")) {
-        window.location.href = "/Book";
+        window.location.href = "/dashboard/librarian_dashboard";
     } else {
-        window.location.href = "/books"; // Default member dashboard
+        window.location.href = "/dashboard/member_dashboard";
     }
 } else {
     errorMsg.textContent = " Login failed! Check your credentials.";

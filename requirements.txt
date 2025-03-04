@@ -4,7 +4,7 @@ annotated-types==0.7.0
 asttokens==3.0.0
 Babel==2.13.1
 backcall==0.2.0
-backoff==2.2.1
+backoff==2.2.1s
 beautifulsoup4==4.12.3
 bleach==6.0.0
 bleach-allowlist==1.0.3

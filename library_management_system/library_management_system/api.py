@@ -1,11 +1,12 @@
 import frappe
 from frappe import _
 import html
-
+import re
 
 # book releated api
 
-@frappe.whitelist()  # Removed allow_guest=True
+
+@frappe.whitelist()
 def create_book(title, author, publish_date, isbn, image=None):
     """Creates a new Book document. Only Librarians and System Managers can create books."""
     
@@ -20,19 +21,42 @@ def create_book(title, author, publish_date, isbn, image=None):
     if not any(role in user_roles for role in allowed_roles):
         frappe.throw(_("You do not have permission to add books."), frappe.PermissionError)
 
-    # Create book record
+    #  Validate title (only letters, numbers, and spaces)
+    if not re.match(r"^[a-zA-Z0-9\s]+$", title):
+        frappe.throw(_("Title must contain only letters, numbers, and spaces."))
+
+    #  Validate author name (only letters and spaces)
+    if not re.match(r"^[a-zA-Z\s]+$", author):
+        frappe.throw(_("Author name must contain only letters."))
+
+    #  Validate publish_date (must be YYYY-MM-DD)
+    if not re.match(r"^\d{4}-\d{2}-\d{2}$", publish_date):
+        frappe.throw(_("Invalid publish date format. Use YYYY-MM-DD."))
+
+    #  Validate ISBN (must be 10 or 13 digits)
+    if not re.match(r"^\d{10}(\d{3})?$", isbn):
+        frappe.throw(_("Invalid ISBN. Must be 10 or 13 digits."))
+
+    #  Validate image (if provided, must be URL or Base64 string)
+    if image and not (re.match(r"^(https?|ftp)://[^\s/$.?#].[^\s]*$", image) or image.startswith("data:image")):
+        frappe.throw(_("Invalid image format. Provide a valid URL or Base64 string."))
+
+    #  Create book record
     book = frappe.get_doc({
         "doctype": "Book",
-        "title": title,
-        "author": author,
+        "title": title.strip(),
+        "author": author.strip(),
         "publish_date": publish_date,
-        "isbn": isbn,
-        "image": image
+        "isbn": isbn.strip(),
+        "image": image.strip() if image else None
     })
+    
     book.insert()
     frappe.db.commit()  # Explicitly commit the transaction
     
     return {"message": "Book Created Successfully"}
+
+
 
 
 # fetch all books
