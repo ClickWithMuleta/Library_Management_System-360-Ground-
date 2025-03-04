@@ -11,11 +11,11 @@ This is a simple Library Management System developed using the Frappe framework.
 - CRUD operations for members.
 
 ### Loan Management
-- Track book loans with fields like Member, Book, Loan Date, and Return Date.
+- Track book loans.
 - Check book availability before loaning.
 
 ### Reports
-- Generate reports for all currently loaned books and overdue books.
+- Generate reports for all currently loaned books.
 ### Custom API Development
 - REST API for interacting with the system externally.
 - Supports adding, retrieving, updating, and deleting books and members.
@@ -81,6 +81,7 @@ Ensure you have the following installed:
 
 5. **Access the Application**
    Open a browser and go to: `http://lms.localhost:8000`
+   in my case on port: 8001
 
 
 **Login Page**
