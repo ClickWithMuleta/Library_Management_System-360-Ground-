@@ -96,10 +96,4 @@ Admin: Administrator
 
 Password: mswh
 
-Librarian: librarian12@gmail.com
 
-Password: Www.@mklmkl
-
-Library Member: test@test.com
-
-Password: Www.@mklmkl
