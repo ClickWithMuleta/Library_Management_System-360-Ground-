@@ -88,11 +88,11 @@ Ensure you have the following installed:
 
 ![Image](https://github.com/user-attachments/assets/51320a8c-126e-4f79-b191-81f6583b5509)
 
- **Library Books**
+ **Library Books (CRUD)**
   ![Image](https://github.com/user-attachments/assets/01047376-e424-44ca-a2ad-adc1c46ffced)
 
-   **Login Page**
-   
+   **Update Book**
+   ![Image](https://github.com/user-attachments/assets/6af2b2d1-9d50-4aa7-84c7-4344c6d776b3)
    ***Usage**
 
 Login Credentials
